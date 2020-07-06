@@ -16,12 +16,10 @@ app.post("/on", async (req, res) => {
     setTimeout(() => {
         await exec('sudo python gpio/off.py');
     }, seconds * 1000);
-    res.send(200);
 })
 
 app.post("/off", async (req, res) => {
     await exec('sudo python gpio/off.py');
-    res.send(200);
 })
 
 app.get("/home", async (req, res) => {
