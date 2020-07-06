@@ -1,0 +1,28 @@
+<form method="POST" action="/on">
+    <input type="submit" value="Turn ON">
+</form>
+
+<form method="POST" action="/off">
+    <input type="submit" value="Turn OFF">
+</form>
+
+<form onsubmit="return customSubmit(this);" method="POST" action="/on">
+    <label for="seconds">Seconds</label>
+    <input type="number" id="seconds" placeholder="5" name="seconds" value="5" min="1" max="100">
+    <input type="submit" value="Turn ON for X seconds">
+</form>
+
+<script>
+    const customSubmit = (form) => {
+        const a = new URLSearchParams(new FormData(form));
+        fetch(`${form.action}?${a.toString()}`, {
+            method: form.method,
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ test: 5 })
+        });
+        return false;
+    }
+</script>
