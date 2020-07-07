@@ -1,8 +1,8 @@
-<form method="POST" action="/on">
+<form onsubmit="return customSubmit(this);" method="POST" action="/on">
     <input type="submit" value="Turn ON">
 </form>
 
-<form method="POST" action="/off">
+<form onsubmit="return customSubmit(this);" method="POST" action="/off">
     <input type="submit" value="Turn OFF">
 </form>
 
@@ -17,11 +17,7 @@
         const a = new URLSearchParams(new FormData(form));
         fetch(`${form.action}?${a.toString()}`, {
             method: form.method,
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({ test: 5 })
+            body: JSON.stringify({})
         });
         return false;
     }
